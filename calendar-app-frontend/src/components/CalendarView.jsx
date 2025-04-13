@@ -150,19 +150,16 @@ const CalendarView = () => {
         );
       } else {
         console.log("🛰 Dispatching createEvent...");
-        await dispatch(createEvent(eventData)); // ✅ await this
-        await dispatch(fetchEvents()); // ✅ fetch new list
-        console.log("✅ Event dispatch done");
+        await dispatch(createEvent(eventData));
+        await dispatch(fetchEvents());
+        console.log("Event dispatch done");
       }
 
       dispatch(resetFormData());
       dispatch(closeModal());
     } catch (err) {
-      console.error("❌ Error in handleModalSubmit:", err);
+      console.error("Error in handleModalSubmit:", err);
     }
-
-    console.log("⏰ start:", formData.start);
-    console.log("⏰ end:", formData.end);
   };
 
   return (

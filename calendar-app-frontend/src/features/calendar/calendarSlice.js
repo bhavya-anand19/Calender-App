@@ -1,4 +1,3 @@
-// src/features/calendar/calendarSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -15,7 +14,6 @@ const initialState = {
     },
 };
 
-// 🔁 GET all events
 export const fetchEvents = createAsyncThunk("calendar/fetchEvents", async () => {
     const res = await axios.get(await axios.delete(
         `${process.env.REACT_APP_API_BASE_URL}/api/events/`
@@ -34,7 +32,7 @@ export const fetchEvents = createAsyncThunk("calendar/fetchEvents", async () => 
     }));
 });
 
-// ➕ POST new event
+// POST new event
 export const createEvent = createAsyncThunk("calendar/createEvent", async (eventData) => {
     const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/events/`, eventData);
     const event = res.data;
