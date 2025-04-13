@@ -103,7 +103,7 @@ const CalendarView = () => {
     };
 
     await axios.put(
-      `http://localhost:5000/api/events/${info.event.id}`,
+      `${process.env.REACT_APP_API_BASE_URL}/api/events/${info.event.id}`,
       updatedEvent
     );
     dispatch(fetchEvents());
@@ -121,7 +121,7 @@ const CalendarView = () => {
     };
 
     await axios.put(
-      `http://localhost:5000/api/events/${info.event.id}`,
+      `${process.env.REACT_APP_API_BASE_URL}/api/events/${info.event.id}`,
       updatedEvent
     );
     dispatch(fetchEvents());
@@ -145,7 +145,7 @@ const CalendarView = () => {
 
       if (formData._id) {
         await axios.put(
-          `http://localhost:5000/api/events/${formData._id}`,
+          `${process.env.REACT_APP_API_BASE_URL}api/events/${formData._id}`,
           eventData
         );
       } else {
