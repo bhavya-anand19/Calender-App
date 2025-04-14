@@ -4,6 +4,7 @@ const Event = require("../models/Event-models");
 
 // GET all events
 router.get("/", async (req, res) => {
+    console.log("📥 New event received in backend:", req.body);
     try {
         const events = await Event.find();
         res.status(200).json(events);
