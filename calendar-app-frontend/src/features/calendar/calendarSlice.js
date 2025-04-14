@@ -15,10 +15,8 @@ const initialState = {
 };
 
 export const fetchEvents = createAsyncThunk("calendar/fetchEvents", async () => {
-    const res = await axios.get(await axios.delete(
-        `${process.env.REACT_APP_API_BASE_URL}/api/events/`
-    )
-    );
+    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/events/`);
+
 
     return res.data.map((event) => ({
         id: event._id,

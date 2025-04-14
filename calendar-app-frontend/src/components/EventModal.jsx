@@ -34,10 +34,9 @@ const EventModal = ({ isOpen, onSubmit }) => {
   const handleDelete = async () => {
     if (!formData._id) return;
     await axios.delete(
-      await axios.delete(
-        `${process.env.REACT_APP_API_BASE_URL}/api/events/${formData._id}`
-      )
+      `${process.env.REACT_APP_API_BASE_URL}/api/events/${formData._id}`
     );
+
     dispatch(closeModal());
     dispatch(resetFormData());
     dispatch(fetchEvents());

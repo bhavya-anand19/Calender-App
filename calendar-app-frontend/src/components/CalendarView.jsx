@@ -129,7 +129,7 @@ const CalendarView = () => {
 
   const handleModalSubmit = async () => {
     try {
-      console.log("🔥 Modal Submit Clicked");
+      console.log("Modal Submit Clicked");
 
       const eventData = {
         title: formData.title,
@@ -141,15 +141,15 @@ const CalendarView = () => {
         },
       };
 
-      console.log("📦 Data being sent:", eventData);
+      console.log("Data being sent:", eventData);
 
       if (formData._id) {
         await axios.put(
-          `${process.env.REACT_APP_API_BASE_URL}api/events/${formData._id}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/events/${formData._id}`,
           eventData
         );
       } else {
-        console.log("🛰 Dispatching createEvent...");
+        console.log("Dispatching createEvent...");
         await dispatch(createEvent(eventData));
         await dispatch(fetchEvents());
         console.log("Event dispatch done");

@@ -28,4 +28,4 @@ const eventRoutes = require("./routes/eventRoutes");
 app.use("/api/events", eventRoutes);
 
 //Server Listen
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running at ${PORT}`));
