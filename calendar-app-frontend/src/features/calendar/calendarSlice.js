@@ -31,21 +31,36 @@ export const fetchEvents = createAsyncThunk("calendar/fetchEvents", async () => 
 });
 
 // POST new event
-export const createEvent = createAsyncThunk("calendar/createEvent", async (eventData) => {
-    const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/events/`, eventData);
-    const event = res.data;
+export const createEvent = createAsyncThunk(
+    "calendar/createEvent",
+    async (eventData, { rejectWithValue }) => {
+        console.log("📤 Sending event to backend:", eventData);
+        try {
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_BASE_URL}/api/events`,
+                eventData
+            );
+            console.log("✅ Response from backend:", res.data);
 
-    return {
-        id: event._id,
-        title: event.title,
-        start: event.start,
-        end: event.end,
-        color: event.color,
-        extendedProps: {
-            category: event.extendedProps?.category || "",
-        },
-    };
-});
+            const event = res.data;
+
+            return {
+                id: event._id,
+                title: event.title,
+                start: event.start,
+                end: event.end,
+                color: event.color,
+                extendedProps: {
+                    category: event.extendedProps?.category || "",
+                },
+            };
+        } catch (error) {
+            console.error("❌ createEvent API Error:", error.response?.data || error.message); // 👀 Log error
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
+
 
 const calendarSlice = createSlice({
     name: "calendar",
